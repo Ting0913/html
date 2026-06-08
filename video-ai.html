@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>影音生成AI - AI工具箱</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(0, 0, 0, 0.05);
+            z-index: 9999;
+        }
+        .progress-bar {
+            height: 100%;
+            background: #ea580c;
+            width: 0%;
+            transition: width 0.08s ease-out;
+        }
+        
+        nav { margin-top: 5px; }
+
+        .card h3 { cursor: pointer; position: relative; }
+        .card h3::after { content: " ▾"; font-size: 0.9rem; color: #888; }
+        .theme-toggle-btn {
+            position: fixed; bottom: 20px; right: 20px; padding: 12px;
+            background-color: #334155; color: white; border: none;
+            border-radius: 50%; width: 50px; height: 50px; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); font-size: 1.2rem; z-index: 1000;
+        }
+        body.dark-mode { background-color: #0f172a !important; color: #f1f5f9 !important; }
+        body.dark-mode .card { background-color: #1e293b !important; color: #f1f5f9 !important; border: 1px solid #334155; }
+        body.dark-mode table, body.dark-mode th, body.dark-mode td { border: 1px solid #475569 !important; color: #f1f5f9 !important; }
+        body.dark-mode th { background-color: #334155 !important; }
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myProgressBar"></div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="text-ai.html">文字AI</a></li>
+            <li><a href="code-ai.html">程式AI</a></li>
+            <li><a href="data-ai.html">資料AI</a></li>
+            <li><a href="image-ai.html">圖像AI</a></li>
+            <li><a href="video-ai.html">影音AI</a></li>
+            <li><a href="presentation-ai.html">簡報AI</a></li>
+            <li><a href="notes-ai.html">筆記AI</a></li>
+        </ul>
+    </nav>
+
+    <button class="theme-toggle-btn" id="themeBtn">🌙</button>
+
+    <div class="container">
+        <div class="info">
+            <h1>影音生成AI — Runway Gen-3</h1>
+            <p>Runway Gen-3是由頂尖人工智慧科技公司 Runway 所研發的次世代高畫質 AI 影片生成模型。</p>
+        </div>
+
+        <div class="card" style="text-align: center;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4pRVgt7mrjDzm3QjBJl61tsx1Fs47YZtlDw&s" alt="Video AI Logo" class="logo-img" style="max-width: 120px; border-radius: 8px; margin-bottom: 15px;">
+            <h3>什麼是影音生成 AI？</h3>
+            <p>影音 AI 可以根據文字提示詞創跨出高畫質短片，或是將一張照片變成動態的影片，還可以將背景音樂、旁白配音一併交由 AI 自動處理。</p>
+            
+            <div style="margin: 25px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <a href="https://runwayml.com" target="_blank" style="padding: 12px 20px; background-color: #ea580c; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 0.9rem; box-shadow: 0 2px 4px rgba(234,88,12,0.2);">
+                    Runway Gen-3 
+                </a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>主要功能</h3>
+            <table>
+                <tr>
+                    <th>功能</th>
+                    <th>說明</th>
+                </tr>
+                <tr>
+                    <td>文字生影片</td>
+                    <td>輸入一段分鏡描述後再選擇影片風格，Runway Gen-3 會根據對應的需求生成高畫質片段。</td>
+                </tr>
+                <tr>
+                    <td>圖片生影片</td>
+                    <td>上傳一張靜態照片，並指定運鏡方式（如：鏡頭拉近、空拍機俯瞰），讓靜態畫面動起來</td>
+                </tr>
+                <tr>
+                    <td>影片風格轉化</td>
+                    <td>上傳一段影片在選擇轉換的風格，利用 AI 一鍵把整段影片轉成對應的風格</td>
+                </tr>
+                <tr>
+                    <td>AI 人聲配音與翻譯</td>
+                    <td>輸入文稿或上傳音檔，再從系統內內建的多種AI聲音模型中選擇合適的進行配音或翻譯</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>優點與缺點</h3>
+            <table>
+                <tr>
+                    <th>優點</th>
+                    <th>缺點</th>
+                </tr>
+                <tr>
+                    <td>成本低，不需要昂貴的攝影器材，幾分鐘內就能獨立產出精緻短片。</td>
+                    <td>雖然主體穩定，但背景動態或複雜場景有時難以進行細緻控制。</td>
+                </tr>
+                <tr>
+                    <td>採用先進模型，能生成極具真實感、細膩細節與自然光影的影片。</td>
+                    <td>僅提供少量的免費試用積分，進階功能與高品質生成需付費訂閱。</td>
+                </tr>
+                <tr>
+                    <td>平台介面簡單直觀，支援文字、圖片、影片等多模態輸入生成。</td>
+                    <td>目前難以百分之百精準控制影片中角色前後鏡頭的外貌一致性</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>怎麼用 AI 進行短片創作</h3>
+            <table>
+                <tr>
+                    <th>用途</th>
+                    <th>範例指令</th>
+                </tr>
+                <tr>
+                    <td>科技感開場畫面</td>
+                    <td>"Cinematic drone shot, flying through a high-tech glowing laboratory, 4k resolution, hyper-realistic"</td>
+                </tr>
+                <tr>
+                    <td>情境動畫短片</td>
+                    <td>"Close-up shot of an astronaut walking on a purple desert planet, dramatic lighting, detailed reflections"</td>
+                </tr>
+                <tr>
+                    <td>背景音樂生成</td>
+                    <td>"Lo-fi hip hop track for a coding website, relaxing mood, smooth bass, 120 bpm"</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>如何將 AI 應用於影音多媒體製作？</h3>
+            <p>1. 登入 Google Gemini 或 Runway 平台，將你的分鏡敘述或參考圖輸入進去</p>
+            <p>2. 寫下你想呈現的畫面腳本，包含時間、地點、主角以及鏡頭是如何移動的</p>
+            <p>3. 調整參數，點擊生成並等待 AI 生成完成</p>
+            <p>4. 可以預覽並下載生成的影片</p>
+        </div>
+
+        <div class="teammate">
+            <p>&copy; 2026 AI工具箱 鄭書懷 陳冠廷 尤翊丞製作</p>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (scrollTop / scrollHeight) * 100;
+            document.getElementById('myProgressBar').style.width = scrolled + '%';
+        });
+
+        $(document).ready(function(){
+            $(".card:not(:first)").each(function(){
+                $(this).find("table, p").hide();
+            });
+            $(".card h3").click(function(){
+                $(this).siblings("table, p").slideToggle(300);
+            });
+        });
+
+        document.getElementById('themeBtn').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            if(document.body.classList.contains('dark-mode')) {
+                this.innerText = '☀️';
+            } else {
+                this.innerText = '🌙';
+            }
+        });
+    </script>
+</body>
+</html>

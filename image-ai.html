@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圖像生成AI - AI工具箱</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(0, 0, 0, 0.05);
+            z-index: 9999;
+        }
+        .progress-bar {
+            height: 100%;
+            background: #10b981;
+            width: 0%;
+            transition: width 0.08s ease-out;
+        }
+        
+        nav { margin-top: 5px; }
+
+        .card h3 { cursor: pointer; position: relative; }
+        .card h3::after { content: " ▾"; font-size: 0.9rem; color: #888; }
+        .theme-toggle-btn {
+            position: fixed; bottom: 20px; right: 20px; padding: 12px;
+            background-color: #334155; color: white; border: none;
+            border-radius: 50%; width: 50px; height: 50px; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); font-size: 1.2rem; z-index: 1000;
+        }
+        body.dark-mode { background-color: #0f172a !important; color: #f1f5f9 !important; }
+        body.dark-mode .card { background-color: #1e293b !important; color: #f1f5f9 !important; border: 1px solid #334155; }
+        body.dark-mode table, body.dark-mode th, body.dark-mode td { border: 1px solid #475569 !important; color: #f1f5f9 !important; }
+        body.dark-mode th { background-color: #334155 !important; }
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myProgressBar"></div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="text-ai.html">文字AI</a></li>
+            <li><a href="code-ai.html">程式AI</a></li>
+            <li><a href="data-ai.html">資料AI</a></li>
+            <li><a href="image-ai.html">圖像AI</a></li>
+            <li><a href="video-ai.html">影音AI</a></li>
+            <li><a href="presentation-ai.html">簡報AI</a></li>
+            <li><a href="notes-ai.html">筆記AI</a></li>
+        </ul>
+    </nav>
+
+    <button class="theme-toggle-btn" id="themeBtn">🌙</button>
+
+    <div class="container">
+        <div class="info">
+            <h1>圖像生成AI — Leonardo.Ai</h1>
+            <p>Leonardo.Ai 是一款先進的圖像生成 AI 工具，可以根據我們輸入的文字描述，生成出對應的圖片。</p>
+        </div>
+
+        <div class="card" style="text-align: center;">
+            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80" alt="Image AI Logo" class="logo-img" style="max-width: 120px; border-radius: 8px; margin-bottom: 15px;">
+            <h3>什麼是圖像生成 AI？</h3>
+            <p>圖像 AI 是利用深度學習模型，將我們的文字敘述轉化為全新的圖片，不管是做網頁背景圖、動漫風格的圖片，或是擬真的商業攝影照片，都可以應用此技術。</p>
+            
+            <div style="margin: 25px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <a href="https://leonardo.ai/" target="_blank" style="padding: 12px 20px; background-color: #1a73e8; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 0.9rem; box-shadow: 0 2px 4px rgba(26,115,232,0.2);">
+                    Leonardo.Ai
+                </a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Leonardo.Ai 主要功能</h3>
+            <table>
+                <tr>
+                    <th>功能</th>
+                    <th>說明</th>
+                </tr>
+                <tr>
+                    <td>文字生圖</td>
+                    <td>輸入文字描述，AI 會在幾秒內產出對應的圖片</td>
+                </tr>
+                <tr>
+                    <td>及時生成</td>
+                    <td>我們更改完提示詞後，AI 就會同步且即時改變畫面，讓我們能立刻看到更改文字帶來的圖片變化。</td>
+                </tr>
+                <tr>
+                    <td>提示詞優化</td>
+                    <td>如果輸入的詞太精簡，AI會自動延伸出更豐富的優化指令</td>
+                </tr>
+                <tr>
+                    <td>圖像局部延伸</td>
+                    <td>自動擴展現有圖片的邊界，讓 AI 根據原本畫面補全四周沒有拍到的風景</td>
+                </tr>
+                <tr>
+                    <td>高解析度放大</td>
+                    <td>利用 AI 畫素修補技術，將原本模糊、低解析度的點陣圖放大高畫質</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>優點與缺點</h3>
+            <table>
+                <tr>
+                    <th>優點</th>
+                    <th>缺點</th>
+                </tr>
+                <tr>
+                    <td>每天有固定的免費額度可以使用，少量使用可以不花錢</td>
+                    <td>目前整體介面只支援英文版本</td>
+                </tr>
+                <tr>
+                    <td>能完美駕馭各種畫風，從日系動漫、像素風或是電影級 3D 渲染皆可</td>
+                    <td>高畫質、進階功能需要消耗點數，讓額度很快耗盡</td>
+                </tr>
+                <tr>
+                    <td>產生的圖片通常沒有版權爭議，適合我們做報告時使用</td>
+                    <td>如果提示詞（Prompt）不夠詳細，AI 產出的風格會跟預期有落差</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>要怎麼用 AI 進行圖像創作與排版？</h3>
+            <table>
+                <tr>
+                    <th>用途</th>
+                    <th>範例指令 只能用英文指令</th>
+                </tr>
+                <tr>
+                    <td>網頁背景圖</td>
+                    <td>"A futuristic neon cyber-punk city background, website design, flat design, 8k"</td>
+                </tr>
+                <tr>
+                    <td>UI 圖示風格</td>
+                    <td>"A 3D glassmorphism style folder icon, white background, isolated, high resolution"</td>
+                </tr>
+                <tr>
+                    <td>報告簡報封面</td>
+                    <td>"Minimalist flat vector illustration of team members working with AI robots, corporate colors"</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>如何將 AI 應用於網頁素材繪製？</h3>
+            <p>1. 定義畫面風格與選擇對應模型</p>
+            <p>2. 用英文寫提示詞與調整風格元素</p>
+            <p>3. 可以利用畫布或參數滑桿調整細節</p>
+            <p>4. 匯出高畫質圖檔並嵌入網頁專案</p>
+            <hr>
+        </div>
+
+        <div class="teammate">
+            <p>&copy; 2026 AI工具箱 鄭書懷 陳冠廷 尤翊丞製作</p>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (scrollTop / scrollHeight) * 100;
+            document.getElementById('myProgressBar').style.width = scrolled + '%';
+        });
+
+        $(document).ready(function(){
+            $(".card:not(:first)").each(function(){
+                $(this).find("table, p, hr").hide();
+            });
+            $(".card h3").click(function(){
+                $(this).siblings("table, p, hr").slideToggle(300);
+            });
+        });
+
+        document.getElementById('themeBtn').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            if(document.body.classList.contains('dark-mode')) {
+                this.innerText = '☀️';
+            } else {
+                this.innerText = '🌙';
+            }
+        });
+    </script>
+</body>
+</html>

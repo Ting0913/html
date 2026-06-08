@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資料與系統分析AI - AI工具箱</title>
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(0, 0, 0, 0.05);
+            z-index: 9999;
+        }
+        .progress-bar {
+            height: 100%;
+            background: #10b981;
+            width: 0%;
+            transition: width 0.08s ease-out;
+        }
+        
+        nav { margin-top: 5px; }
+
+        .card h3 { cursor: pointer; position: relative; }
+        .card h3::after { content: " ▾"; font-size: 0.9rem; color: #888; }
+        .theme-toggle-btn {
+            position: fixed; bottom: 20px; right: 20px; padding: 12px;
+            background-color: #334155; color: white; border: none;
+            border-radius: 50%; width: 50px; height: 50px; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); font-size: 1.2rem; z-index: 1000;
+        }
+        body.dark-mode { background-color: #0f172a !important; color: #f1f5f9 !important; }
+        body.dark-mode .card { background-color: #1e293b !important; color: #f1f5f9 !important; border: 1px solid #334155; }
+        body.dark-mode table, body.dark-mode th, body.dark-mode td { border: 1px solid #475569 !important; color: #f1f5f9 !important; }
+        body.dark-mode th { background-color: #334155 !important; }
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myProgressBar"></div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="text-ai.html">文字AI</a></li>
+            <li><a href="code-ai.html">程式AI</a></li>
+            <li><a href="data-ai.html">資料AI</a></li>
+            <li><a href="image-ai.html">圖像AI</a></li>
+            <li><a href="video-ai.html">影音AI</a></li>
+            <li><a href="presentation-ai.html">簡報AI</a></li>
+            <li><a href="notes-ai.html">筆記AI</a></li>
+        </ul>
+    </nav>
+
+    <button class="theme-toggle-btn" id="themeBtn">🌙</button>
+
+    <div class="container">
+        <div class="info">
+            <h1>資料與系統分析AI — Google Gemini</h1>
+            <p>Gemini是google開發的AI聊天機器人，能夠透過自然語言互動，協助使用者執行資料清理、公式撰寫、數據洞察與圖表生成，大幅縮短數據分析時間</p>
+        </div>
+
+        <div class="card" style="text-align: center;">
+            <img src="https://www.vpon.com/wp-content/uploads/2024/02/Artificial-Intelligence-for-Big-Data-Analytics-1-768x468.jpg" alt="Data AI Logo" class="logo-img" style="max-width: 120px; border-radius: 8px; margin-bottom: 15px;">
+            <h3>什麼是資料與系統分析 AI？</h3>
+            <p>這個 AI 的強大之處在於它是利用機器學習與自然語言處理等技術，來自動化處理、分析數據並輔助軟體系統開發的技術。它將繁瑣的資料清理、需求剖析與架構設計過程自動化，大幅提升商業洞察的效率並減少開發風險。</p>
+            
+            <div style="margin: 25px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <a href="https://gemini.google.com" target="_blank" style="padding: 12px 20px; background-color: #1a73e8; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 0.9rem; box-shadow: 0 2px 4px rgba(26,115,232,0.2);">
+                    Google Gemini
+                </a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>主要功能</h3>
+            <table>
+                <tr><th>功能</th><th>說明</th></tr>
+                <tr><td>自動化資料清洗</td><td>可以自動辨別並處理不一致、缺失或錯誤的資料，節省大量人工清理時間</td></tr>
+                <tr><td>數據探索分析</td><td>透過資料視覺化與結構化清理，過濾掉無關資料，幫助我們從大量的數據中，快速找出關鍵的資料</td></tr>
+                <tr><td>資料庫語法優化</td><td>自動優化運作緩慢的語句，並透過精準配置索引，讓資料檢索速度大幅提升。</td></tr>
+                <tr><td>預測模型建構</td><td>可以根據歷史資料整合後，幫助我們進行未來的預測分析</td></tr>
+                <tr><td>視覺化與報表生成</td><td>根據我們提供的資料特性進行分析，並依照我們的需求挑選出最適合的圖表</td></tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>優點與缺點</h3>
+            <table>
+                <tr><th>優點</th><th>缺點</th></tr>
+                <tr><td>可以處理多量資料，能快速閱讀並摘要數百頁的報告、技術文件或長程式碼庫，從中提煉關鍵資訊。</td><td>但當單次的文本太長時，可能會忽略部分重點</td></tr>
+                <tr><td>除了分析文字，還可以直接對圖片、PDF、影片、語音進行分析，產出重點資訊</td><td>當遇到長影片時，可能無法完整理解內容</td></tr>
+                <tr><td>擅長解釋極度混亂的歷史舊查詢指令</td><td>當舊指令缺乏明確的關聯性，可能無法完全理解其用途</td></tr>
+                <tr><td>能提供完整的虛擬測試數據供系統測試</td><td>但如果將商業敏感資料直接餵給 AI 可能會有資安隱私外洩風險</td></tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>我們怎麼用 AI 進行資料分析？</h3>
+            <p>以下是在期末專案可能會用到的最實用的操作指令：</p>
+            <table>
+                <tr><th>用途</th><th>範例指令</th></tr>
+                <tr><td>自動建表</td><td>"幫我寫一個電商系統的 members 資料表 SQL，包含流水號、密碼、註冊時間"</td></tr>
+                <tr><td>多表查詢</td><td>"我想從會員表、訂單表中，關聯出今天所有還沒出貨的會員姓名與地址"</td></tr>
+                <tr><td>規劃專案模型</td><td>"我要做一個線上選課網站的專案，請幫我規劃資料庫應該要有哪幾張資料表"</td></tr>
+                <tr><td>優化大數據</td><td>"這段查詢跑得有點慢，請幫我改寫，看看是不是需要加上 Index 索引"</td></tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>如何將 AI 應用於資料分析？</h3>
+            <p>1. 整理好需要分析的所有資料</p>
+            <p>2. 打開 Google Gemini對話框，將資料傳入</p>
+            <p>3. 在對話框輸入你的具體需求</p>
+            <p>4. 讓 AI 對應你的需求去產出結果</p>
+            <hr>
+        </div>
+
+        <div class="teammate">
+            <p>&copy; 2026 AI工具箱 鄭書懷 陳冠廷 尤翊丞製作</p>
+        </div>
+    </div>    
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (scrollTop / scrollHeight) * 100;
+            document.getElementById('myProgressBar').style.width = scrolled + '%';
+        });
+
+        $(document).ready(function(){
+            $(".card:not(:first)").each(function(){
+                $(this).find("table, p, hr").hide();
+            });
+            $(".card h3").click(function(){
+                $(this).siblings("table, p, hr").slideToggle(300);
+            });
+        });
+
+        document.getElementById('themeBtn').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            if(document.body.classList.contains('dark-mode')) {
+                this.innerText = '☀️';
+            } else {
+                this.innerText = '🌙';
+            }
+        });
+    </script>
+</body>
+</html>
