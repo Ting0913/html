@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>資料與系統分析AI - AI工具箱</title>
     <link rel="stylesheet" href="../css/style.css">
-    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <style>
         .progress-container {
             position: fixed;
@@ -20,12 +18,33 @@
         }
         .progress-bar {
             height: 100%;
-            background: #10b981;
+            background: #2563eb;
             width: 0%;
             transition: width 0.08s ease-out;
         }
         
-        nav { margin-top: 5px; }
+        nav { 
+            margin-top: 0px !important; 
+            position: fixed !important;  
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            z-index: 9990 !important;   
+        }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+            transform: translateZ(0);     
+            padding-top: 100px !important; 
+        }
+        
+        nav ul li a.active {
+            background-color: #2563eb !important;
+            color: white !important;
+            border-radius: 4px;
+            font-weight: bold;
+        }
 
         .card h3 { cursor: pointer; position: relative; }
         .card h3::after { content: " ▾"; font-size: 0.9rem; color: #888; }
@@ -35,10 +54,18 @@
             border-radius: 50%; width: 50px; height: 50px; cursor: pointer;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3); font-size: 1.2rem; z-index: 1000;
         }
+        
         body.dark-mode { background-color: #0f172a !important; color: #f1f5f9 !important; }
+        body.dark-mode nav { background-color: #1e293b !important; border-bottom: 1px solid #334155; }
+        body.dark-mode nav a { color: #f1f5f9 !important; }
+        body.dark-mode nav a.active { background-color: #2563eb !important; color: white !important; }
+        body.dark-mode .info h1, body.dark-mode .info p { color: #f1f5f9 !important; }
         body.dark-mode .card { background-color: #1e293b !important; color: #f1f5f9 !important; border: 1px solid #334155; }
+        body.dark-mode .card h3, body.dark-mode .card p { color: #f1f5f9 !important; }
         body.dark-mode table, body.dark-mode th, body.dark-mode td { border: 1px solid #475569 !important; color: #f1f5f9 !important; }
-        body.dark-mode th { background-color: #334155 !important; }
+        body.dark-mode th { background-color: #334155 !important; color: #ffffff !important; }
+        body.dark-mode td { color: #e2e8f0 !important; }
+        body.dark-mode .teammate p { color: #94a3b8 !important; }
     </style>
 </head>
 <body>
@@ -52,7 +79,7 @@
             <li><a href="index.html">首頁</a></li>
             <li><a href="text-ai.html">文字AI</a></li>
             <li><a href="code-ai.html">程式AI</a></li>
-            <li><a href="data-ai.html">資料AI</a></li>
+            <li><a href="data-ai.html" class="active">資料AI</a></li>
             <li><a href="image-ai.html">圖像AI</a></li>
             <li><a href="video-ai.html">影音AI</a></li>
             <li><a href="presentation-ai.html">簡報AI</a></li>
@@ -105,7 +132,7 @@
 
         <div class="card">
             <h3>我們怎麼用 AI 進行資料分析？</h3>
-            <p>以下是在期末專案可能會用到的最實用的操作指令：</p>
+            <p>以下是在期期末專案可能會用到的最實用的操作指令：</p>
             <table>
                 <tr><th>用途</th><th>範例指令</th></tr>
                 <tr><td>自動建表</td><td>"幫我寫一個電商系統的 members 資料表 SQL，包含流水號、密碼、註冊時間"</td></tr>
